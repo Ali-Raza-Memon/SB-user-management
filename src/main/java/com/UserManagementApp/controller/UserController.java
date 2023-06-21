@@ -38,7 +38,6 @@ public class UserController {
         }else{
             System.out.println("Something went wrong in servor");
         }
-
         return "register";
     }
 
