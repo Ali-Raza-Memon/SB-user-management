@@ -1,6 +1,8 @@
 package com.UserManagementApp.controller;
 
 import com.UserManagementApp.model.User;
+import com.UserManagementApp.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -8,6 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class UserController {
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/")
     public String index(){
@@ -25,8 +30,14 @@ public class UserController {
     }
 
     @PostMapping("/createUser")
-    public String createUser(@ModelAttribute User user){
-        System.out.println(user );
+    public String createUser(@ModelAttribute User user1){
+        System.out.println(user1 );
+        User user2 = userService.createUser(user1);
+        if(user2 !=null){
+            System.out.println("Registered Successfully");
+        }else{
+            System.out.println("Something went wrong in servor");
+        }
 
         return "register";
     }
