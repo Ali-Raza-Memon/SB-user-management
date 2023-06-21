@@ -1,4 +1,13 @@
 package com.UserManagementApp.service;
 
-public class UserService {
+import com.UserManagementApp.model.User;
+
+public interface UserService {
+
+    public User createUser(User user);
+
+
+
+
+
 }
