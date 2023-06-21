@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class UserController {
 
@@ -30,7 +32,7 @@ public class UserController {
     }
 
     @PostMapping("/createUser")
-    public String createUser(@ModelAttribute User user1){
+    public String createUser(@ModelAttribute User user1, HttpSession session){
 
 
         System.out.println(user1 );
@@ -38,13 +40,17 @@ public class UserController {
         boolean f = userService.checkEmail(user1.getEmail());
 
         if(f){
+            session.setAttribute("msg", "Email id alrady Exist");
+
             System.out.println("Email id alrady Exist");
         }else{
 
             User user2 = userService.createUser(user1);
             if(user2 !=null){
+                session.setAttribute("msg", "Registered Successfully");
                 System.out.println("Registered Successfully");
             }else{
+                session.setAttribute("msg", "Something went wrong in servor");
                 System.out.println("Something went wrong in servor");
             }
         }
