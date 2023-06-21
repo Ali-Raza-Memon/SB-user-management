@@ -31,13 +31,27 @@ public class UserController {
 
     @PostMapping("/createUser")
     public String createUser(@ModelAttribute User user1){
+
+
         System.out.println(user1 );
-        User user2 = userService.createUser(user1);
-        if(user2 !=null){
-            System.out.println("Registered Successfully");
+
+        boolean f = userService.checkEmail(user1.getEmail());
+
+        if(f){
+            System.out.println("Email id alrady Exist");
         }else{
-            System.out.println("Something went wrong in servor");
+
+            User user2 = userService.createUser(user1);
+            if(user2 !=null){
+                System.out.println("Registered Successfully");
+            }else{
+                System.out.println("Something went wrong in servor");
+            }
         }
+
+
+
+
         return "redirect:/register";
     }
 
