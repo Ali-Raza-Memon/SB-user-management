@@ -35,7 +35,7 @@ public class UserController {
     public String createUser(@ModelAttribute User user1, HttpSession session){
 
 
-        System.out.println(user1 );
+//        System.out.println(user1 );
 
         boolean f = userService.checkEmail(user1.getEmail());
 
