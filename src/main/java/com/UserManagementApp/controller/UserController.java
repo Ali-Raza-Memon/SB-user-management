@@ -17,53 +17,38 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/")
-    public String index(){
+    public String index() {
         return "index";
     }
 
     @GetMapping("/signin")
-    public String login(){
+    public String login() {
         return "login";
     }
 
     @GetMapping("/register")
-    public String register(){
+    public String register() {
         return "register";
     }
 
     @PostMapping("/createUser")
-    public String createUser(@ModelAttribute User user1, HttpSession session){
-
+    public String createUser(@ModelAttribute User user1, HttpSession session) {
 
 //        System.out.println(user1 );
 
         boolean f = userService.checkEmail(user1.getEmail());
-
-        if(f){
-            session.setAttribute("msg", "Email id alrady Exist");
-
-            System.out.println("Email id alrady Exist");
-        }else{
-
+        if (f) {
+            session.setAttribute("msg", "Email id already Exist");
+        } else {
             User user2 = userService.createUser(user1);
-            if(user2 !=null){
+            if (user2 != null) {
                 session.setAttribute("msg", "Registered Successfully");
-                System.out.println("Registered Successfully");
-            }else{
-                session.setAttribute("msg", "Something went wrong in servor");
-                System.out.println("Something went wrong in servor");
+            } else {
+                session.setAttribute("msg", "Something went wrong in server");
             }
         }
 
-
-
-
         return "redirect:/register";
     }
-
-
-
-
-
 
 }

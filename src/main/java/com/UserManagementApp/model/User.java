@@ -16,10 +16,8 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @ToString
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private int id;
     private String fullName;
     private String email;

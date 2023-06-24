@@ -20,17 +20,12 @@ public class UserServiceImpl implements UserService {
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRole("ROLE_USER");
-
         return userRepository.save(user);
     }
-
 
     @Override
     public boolean checkEmail(String email) {
         return userRepository.existsByEmail(email);
     }
-
-
-
 
 }

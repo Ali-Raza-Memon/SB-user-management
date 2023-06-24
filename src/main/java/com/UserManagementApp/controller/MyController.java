@@ -25,15 +25,8 @@ public class MyController {
         m.addAttribute("user",user);
     }
 
-
-
     @GetMapping("/")
     public String home(){
         return "user/home";
     }
-
-
-
-
-
 }
